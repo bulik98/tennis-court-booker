@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  phone     String?
+  role      UserRole @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  courts   Court[]   @relation("CourtOwner")
+  bookings Booking[]
+
+  @@map("users")
+}
+
+model Court {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  address     String
+  latitude    Float?
+  longitude   Float?
+  hourlyRate  Int      // Price in tetri (Georgian currency cents)
+  indoor      Boolean  @default(false)
+  amenities   String?  // JSON string of amenities
+  images      String?  // JSON string of image URLs
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  ownerId  String
+  owner    User      @relation("CourtOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  bookings Booking[]
+  slots    TimeSlot[]
+
+  @@map("courts")
+}
+
+model TimeSlot {
+  id        String   @id @default(cuid())
+  date      DateTime
+  startTime String   // Format: "09:00"
+  endTime   String   // Format: "10:00"
+  isBooked  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  // Relations
+  courtId String
+  court   Court     @relation(fields: [courtId], references: [id], onDelete: Cascade)
+  booking Booking?
+
+  @@unique([courtId, date, startTime])
+  @@map("time_slots")
+}
+
+model Booking {
+  id          String        @id @default(cuid())
+  date        DateTime
+  startTime   String
+  endTime     String
+  totalAmount Int           // Amount in tetri
+  commission  Int           // Platform commission in tetri
+  status      BookingStatus @default(PENDING)
+  notes       String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  customerId String
+  customer   User     @relation(fields: [customerId], references: [id])
+  courtId    String
+  court      Court    @relation(fields: [courtId], references: [id])
+  slotId     String   @unique
+  slot       TimeSlot @relation(fields: [slotId], references: [id])
+
+  @@map("bookings")
+}
+
+enum UserRole {
+  CUSTOMER
+  COURT_OWNER
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
