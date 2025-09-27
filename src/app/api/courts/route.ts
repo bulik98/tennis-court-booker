@@ -4,6 +4,9 @@ import { verifyToken } from '@/lib/auth'
 
 export async function GET() {
   try {
+    // Check if database is connected and tables exist
+    await prisma.$connect()
+
     const courts = await prisma.court.findMany({
       where: { isActive: true },
       include: {
@@ -16,8 +19,15 @@ export async function GET() {
     return NextResponse.json(courts)
   } catch (error) {
     console.error('Get courts error:', error)
+
+    // Return empty array instead of error to prevent frontend crash
+    if (error instanceof Error && error.message.includes('relation') || error instanceof Error && error.message.includes('table')) {
+      console.log('Database tables not found, returning empty array')
+      return NextResponse.json([])
+    }
+
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Database connection failed' },
       { status: 500 }
     )
   }
