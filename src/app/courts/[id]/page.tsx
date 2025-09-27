@@ -40,6 +40,10 @@ export default function CourtDetail() {
       if (response.ok) {
         const data = await response.json()
         setCourt(data)
+
+        // Set default date to today
+        const today = new Date().toISOString().split('T')[0]
+        setSelectedDate(today)
       }
     } catch (error) {
       console.error('Error fetching court:', error)
@@ -62,24 +66,6 @@ export default function CourtDetail() {
       setAvailableSlots(dateSlots)
     }
   }, [court, selectedDate])
-
-  const fetchCourt = async () => {
-    try {
-      const response = await fetch(`/api/courts/${params.id}`)
-      if (response.ok) {
-        const data = await response.json()
-        setCourt(data)
-
-        // Set default date to today
-        const today = new Date().toISOString().split('T')[0]
-        setSelectedDate(today)
-      }
-    } catch (error) {
-      console.error('Error fetching court:', error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const handleBookSlot = async (slotId: string) => {
     const token = localStorage.getItem('token')
