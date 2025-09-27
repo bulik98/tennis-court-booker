@@ -538,7 +538,7 @@ export default function CourtManagement() {
           isEdit={true}
           slot={editingSlot}
           onClose={() => setEditingSlot(null)}
-          onSave={(startTime, endTime) => {
+          onSave={() => {
             // Update existing slot logic here
             setEditingSlot(null)
           }}

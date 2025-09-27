@@ -47,8 +47,8 @@ export default function Register() {
       } else {
         router.push('/')
       }
-    } catch (error: any) {
-      setError(error.message)
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : 'Registration failed')
     } finally {
       setLoading(false)
     }

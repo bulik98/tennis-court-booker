@@ -68,7 +68,7 @@ export async function POST(
           data: slotData
         })
         createdSlots.push(slot)
-      } catch (error) {
+      } catch {
         // Ignore duplicate slot errors (unique constraint violation)
         console.log(`Slot ${slotData.startTime} already exists for ${date}`)
       }
@@ -96,7 +96,7 @@ export async function GET(
     const { searchParams } = new URL(request.url)
     const date = searchParams.get('date')
 
-    let whereClause: any = { courtId: id }
+    const whereClause: { courtId: string; date?: Date | { gte: Date } } = { courtId: id }
 
     if (date) {
       const targetDate = new Date(date)

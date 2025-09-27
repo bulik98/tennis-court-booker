@@ -141,7 +141,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courts.length === 0 ? (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-600 mb-4">You haven't added any courts yet.</p>
+                  <p className="text-gray-600 mb-4">You haven&apos;t added any courts yet.</p>
                   <button
                     onClick={() => setShowAddCourt(true)}
                     className="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700"
@@ -251,8 +251,8 @@ function AddCourtModal({ onClose, onSuccess }: { onClose: () => void, onSuccess:
       }
 
       onSuccess()
-    } catch (error: any) {
-      setError(error.message)
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : 'Failed to create court')
     } finally {
       setLoading(false)
     }

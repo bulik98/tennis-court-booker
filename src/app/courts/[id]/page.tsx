@@ -28,18 +28,31 @@ interface TimeSlot {
 
 export default function CourtDetail() {
   const params = useParams()
-  const router = useRouter()
   const [court, setCourt] = useState<Court | null>(null)
   const [loading, setLoading] = useState(true)
   const [selectedDate, setSelectedDate] = useState('')
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([])
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
 
+  const fetchCourt = async () => {
+    try {
+      const response = await fetch(`/api/courts/${params.id}`)
+      if (response.ok) {
+        const data = await response.json()
+        setCourt(data)
+      }
+    } catch (error) {
+      console.error('Error fetching court:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     if (params.id) {
       fetchCourt()
     }
-  }, [params.id])
+  }, [params.id, fetchCourt])
 
   useEffect(() => {
     if (court && selectedDate) {
