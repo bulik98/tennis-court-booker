@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useState, useEffect, useCallback } from 'react'
+import { useParams } from 'next/navigation'
 import Link from 'next/link'
 
 interface Court {
@@ -34,7 +34,7 @@ export default function CourtDetail() {
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([])
   const [showLoginPrompt, setShowLoginPrompt] = useState(false)
 
-  const fetchCourt = async () => {
+  const fetchCourt = useCallback(async () => {
     try {
       const response = await fetch(`/api/courts/${params.id}`)
       if (response.ok) {
@@ -50,7 +50,7 @@ export default function CourtDetail() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [params.id])
 
   useEffect(() => {
     if (params.id) {

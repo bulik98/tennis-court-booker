@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -90,7 +90,7 @@ export default function CourtManagement() {
     }
   }, [selectedDate, court])
 
-  const fetchCourtData = async () => {
+  const fetchCourtData = useCallback(async () => {
     try {
       const token = localStorage.getItem('token')
       const response = await fetch(`/api/courts/${params.id}`, {
@@ -115,9 +115,9 @@ export default function CourtManagement() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [params.id])
 
-  const fetchSlots = async (date: string) => {
+  const fetchSlots = useCallback(async (date: string) => {
     try {
       const response = await fetch(`/api/courts/${params.id}/slots?date=${date}`)
       if (response.ok) {
@@ -127,7 +127,7 @@ export default function CourtManagement() {
     } catch (error) {
       console.error('Error fetching slots:', error)
     }
-  }
+  }, [params.id])
 
   const fetchBookings = async () => {
     try {
