@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { prisma, initializePrisma } from '@/lib/prisma'
 import { verifyToken } from '@/lib/auth'
 
 export async function GET() {
   try {
-    // Check if database is connected and tables exist
-    await prisma.$connect()
+    // Initialize database connection
+    await initializePrisma()
 
     const courts = await prisma.court.findMany({
       where: { isActive: true },
@@ -21,13 +21,28 @@ export async function GET() {
     console.error('Get courts error:', error)
 
     // Return empty array instead of error to prevent frontend crash
-    if (error instanceof Error && error.message.includes('relation') || error instanceof Error && error.message.includes('table')) {
+    if (error instanceof Error && (
+      error.message.includes('relation') ||
+      error.message.includes('table') ||
+      error.message.includes('does not exist') ||
+      error.message.includes('P2021') // Prisma error for missing table
+    )) {
       console.log('Database tables not found, returning empty array')
       return NextResponse.json([])
     }
 
+    // If it's a connection error, also return empty array
+    if (error instanceof Error && (
+      error.message.includes('connection') ||
+      error.message.includes('ENOTFOUND') ||
+      error.message.includes('timeout')
+    )) {
+      console.log('Database connection failed, returning empty array')
+      return NextResponse.json([])
+    }
+
     return NextResponse.json(
-      { error: 'Database connection failed' },
+      { error: 'Database error' },
       { status: 500 }
     )
   }
