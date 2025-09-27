@@ -62,10 +62,25 @@ export default function Home() {
   const fetchCourts = async () => {
     try {
       const response = await fetch('/api/courts')
+
+      if (!response.ok) {
+        console.error('API Error:', response.status, response.statusText)
+        setCourts([]) // Set empty array on error
+        return
+      }
+
       const data = await response.json()
-      setCourts(data)
+
+      // Ensure data is an array
+      if (Array.isArray(data)) {
+        setCourts(data)
+      } else {
+        console.error('API returned non-array data:', data)
+        setCourts([])
+      }
     } catch (error) {
       console.error('Error fetching courts:', error)
+      setCourts([]) // Set empty array on error
     } finally {
       setLoading(false)
     }
