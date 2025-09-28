@@ -133,6 +133,14 @@ export default function Home() {
                         Dashboard
                       </Link>
                     )}
+                    {user.role === 'CUSTOMER' && (
+                      <Link
+                        href="/my-bookings"
+                        className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 text-sm"
+                      >
+                        My Bookings
+                      </Link>
+                    )}
                     <button
                       onClick={handleLogout}
                       className="text-gray-600 hover:text-gray-700 font-medium text-sm px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
