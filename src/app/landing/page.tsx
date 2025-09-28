@@ -54,7 +54,7 @@ export default function Landing() {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Tired of endless calls? Fed up with uncertain reservations that disappear by tomorrow?
-              We've solved Tbilisi's tennis booking nightmare - 40 courts and counting! 🎾
+              We&apos;ve solved Tbilisi&apos;s tennis booking nightmare - 40 courts and counting! 🎾
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export default function Landing() {
               <div className="text-5xl mb-4">⏰</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Endless Waiting</h3>
               <p className="text-gray-600">
-                Long wait times just to hear "maybe tomorrow" - spending more time booking than playing!
+                Long wait times just to hear &ldquo;maybe tomorrow&rdquo; - spending more time booking than playing!
               </p>
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function Landing() {
                     <div className="text-green-600 text-xl mr-3">🔒</div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Guaranteed Reservations</h4>
-                      <p className="text-gray-600">Your booking WON'T disappear - stable, reliable reservations</p>
+                      <p className="text-gray-600">Your booking WON&apos;T disappear - stable, reliable reservations</p>
                     </div>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function Landing() {
               <div className="bg-green-50 rounded-lg p-8 border-2 border-green-200">
                 <div className="text-6xl text-center mb-4">🎾</div>
                 <h4 className="text-lg font-semibold text-center text-gray-900 mb-4">
-                  "No more calling 15 courts every morning! Now I book in 30 seconds and actually PLAY tennis!"
+                  &ldquo;No more calling 15 courts every morning! Now I book in 30 seconds and actually PLAY tennis!&rdquo;
                 </h4>
                 <p className="text-gray-600 text-center font-medium">
                   - Giorgi M., Vake Tennis Player
@@ -218,7 +218,7 @@ export default function Landing() {
               <div className="bg-green-50 rounded-lg p-8 border-2 border-green-200">
                 <div className="text-6xl text-center mb-4">💰</div>
                 <h4 className="text-lg font-semibold text-center text-gray-900 mb-4">
-                  "Finally no more phone bookings! My revenue increased 60% and I keep 100% - amazing!"
+                  &ldquo;Finally no more phone bookings! My revenue increased 60% and I keep 100% - amazing!&rdquo;
                 </h4>
                 <p className="text-gray-600 text-center font-medium">
                   - Nino K., Premier Court Owner in Vake
@@ -281,7 +281,7 @@ export default function Landing() {
               🏆 Trusted by Tbilisi's Premier Tennis Courts
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We're already working with the main courts in Vake and Mziuri - the best tennis destinations in Tbilisi!
+              We&apos;re already working with the main courts in Vake and Mziuri - the best tennis destinations in Tbilisi!
             </p>
           </div>
 
@@ -291,7 +291,7 @@ export default function Landing() {
                 <div className="text-4xl mb-4">🎾</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Vake Tennis Complex</h3>
                 <p className="text-gray-600 mb-4">
-                  "Players love the instant booking system. No more phone chaos - bookings increased 70%!"
+                  &ldquo;Players love the instant booking system. No more phone chaos - bookings increased 70%!&rdquo;
                 </p>
                 <div className="flex justify-center items-center space-x-2">
                   <div className="flex text-yellow-400">
@@ -307,7 +307,7 @@ export default function Landing() {
                 <div className="text-4xl mb-4">🏟️</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Mziuri Sports Complex</h3>
                 <p className="text-gray-600 mb-4">
-                  "Finally, a reliable booking system! Our courts are full and players are happy."
+                  &ldquo;Finally, a reliable booking system! Our courts are full and players are happy.&rdquo;
                 </p>
                 <div className="flex justify-center items-center space-x-2">
                   <div className="flex text-yellow-400">
@@ -357,7 +357,7 @@ export default function Landing() {
             🎾 Ready to Play Tennis the Modern Way in Tbilisi?
           </h2>
           <p className="text-xl text-green-100 mb-8">
-            Join 40+ courts and hundreds of players who've ditched phone booking forever! Your first game is completely FREE! 🆓
+            Join 40+ courts and hundreds of players who&apos;ve ditched phone booking forever! Your first game is completely FREE! 🆓
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

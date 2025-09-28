@@ -177,7 +177,7 @@ export default function CourtsPage() {
                   No courts available yet
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  We're working with court owners to bring you the best tennis facilities in Tbilisi.
+                  We&apos;re working with court owners to bring you the best tennis facilities in Tbilisi.
                 </p>
                 {user.role === 'COURT_OWNER' ? (
                   <Link
