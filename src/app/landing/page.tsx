@@ -70,7 +70,7 @@ export default function Landing() {
               <div className="text-5xl mb-4">❌</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Lost Reservations</h3>
               <p className="text-gray-600">
-                Your booking mysteriously disappears by tomorrow - no guarantee you'll actually play.
+                Your booking mysteriously disappears by tomorrow - no guarantee you&apos;ll actually play.
               </p>
             </div>
             <div className="text-center">
@@ -278,7 +278,7 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              🏆 Trusted by Tbilisi's Premier Tennis Courts
+              🏆 Trusted by Tbilisi&apos;s Premier Tennis Courts
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               We&apos;re already working with the main courts in Vake and Mziuri - the best tennis destinations in Tbilisi!
